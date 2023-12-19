@@ -30,6 +30,7 @@ export default {
 		const imageResClone = new Response(imageRes.body, {
 			headers: {
 				'cache-control': 'public, max-age=43200',
+				'content-type': imageRes.headers.get('content-type'),
 			},
 		});
 		// 写入缓存
