@@ -1,11 +1,12 @@
 {
-  "name": "github-repo-image",
+  "name": "github-image",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "deploy": "wrangler deploy",
     "dev": "wrangler dev",
-    "start": "wrangler dev"
+    "start": "wrangler dev",
+    "logs": "wrangler tail"
   },
   "devDependencies": {
     "wrangler": "^3.0.0"
