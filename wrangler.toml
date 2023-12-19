@@ -1,4 +1,4 @@
-name = "github-image"
+name = "github-og-image"
 main = "src/index.js"
 compatibility_date = "2023-12-06"
 
