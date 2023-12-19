@@ -18,6 +18,14 @@ export default {
 			console.log('cache: true');
 			return hasCache;
 		}
+		if (cacheUrl.pathname === '/') {
+			return new Response(null, {
+				status: 302,
+				headers: {
+					location: 'https://github.com/ccbikai/github-og-image',
+				},
+			});
+		}
 		const githubUrl = `https://github.com${cacheUrl.pathname}`;
 		console.log(githubUrl);
 		const githubRes = await fetch(githubUrl);
