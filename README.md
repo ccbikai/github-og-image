@@ -10,7 +10,9 @@
 
 ## 使用方法
 
-在任意 Github 页面修改 `.com` 为 `.html.zone`。 比如 `https://github.com/vercel/next.js` => `https://github.html.zone/vercel/next.js` 。
+**在任意 Github 页面修改 `.com` 为 `.html.zone`**。
+
+比如 <https://github.com/vercel/next.js> => <https://github.html.zone/vercel/next.js> 。
 
 ## 部署方式
 
