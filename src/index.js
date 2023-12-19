@@ -1,3 +1,12 @@
+function getGithubImage(githubImage, pathname) {
+	const imageURL = new URL(githubImage);
+	if (imageURL.hostname === 'repository-images.githubusercontent.com') {
+		const imagePath = imageURL.pathname.replaceAll('/', '').replaceAll('-', '');
+		return `https://opengraph.githubassets.com/${imagePath}${pathname}`;
+	}
+	return githubImage;
+}
+
 export default {
 	async fetch(request, env, context) {
 		// 读取缓存
@@ -22,7 +31,7 @@ export default {
 			})
 			.transform(githubRes);
 		await html.text();
-		const imageRes = await fetch(githubImage, {
+		const imageRes = await fetch(getGithubImage(githubImage, cacheUrl.pathname), {
 			headers: {
 				'user-agent': request.headers.get('user-agent'),
 			},
