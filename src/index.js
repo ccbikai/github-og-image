@@ -44,14 +44,17 @@ export default {
 				'user-agent': request.headers.get('user-agent'),
 			},
 		});
-		const imageResClone = new Response(imageRes.body, {
-			headers: {
-				'cache-control': 'public, max-age=43200',
-				'content-type': imageRes.headers.get('content-type'),
-			},
-		});
-		// 写入缓存
-		context.waitUntil(cache.put(cacheKey, imageResClone.clone()));
-		return imageResClone;
+		if (imageRes.ok) {
+			const imageResClone = new Response(imageRes.body, {
+				headers: {
+					'cache-control': 'public, max-age=43200',
+					'content-type': imageRes.headers.get('content-type'),
+				},
+			});
+			// 写入缓存
+			context.waitUntil(cache.put(cacheKey, imageResClone.clone()));
+			return imageResClone;
+		}
+		return imageRes
 	},
 };
