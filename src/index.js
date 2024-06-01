@@ -1,6 +1,6 @@
 function getGithubImage(githubImage, pathname) {
 	const imageURL = new URL(githubImage);
-	if (imageURL.hostname === 'repository-images.githubusercontent.com') {
+	if (imageURL.hostname !== 'repository-images.githubusercontent.com') {
 		const imagePath = imageURL.pathname.replaceAll('/', '').replaceAll('-', '');
 		return `https://opengraph.githubassets.com/${imagePath}${pathname}`;
 	}
