@@ -47,7 +47,7 @@ export default {
 		if (imageRes.ok) {
 			const imageResClone = new Response(imageRes.body, {
 				headers: {
-					'cache-control': 'public, max-age=43200',
+					'cache-control': 'public,max-age=604800,s-maxage=604800',
 					'content-type': imageRes.headers.get('content-type'),
 				},
 			});
