@@ -28,7 +28,13 @@ export default {
 		}
 		const githubUrl = `https://github.com${cacheUrl.pathname}`;
 		console.log(githubUrl);
-		const githubRes = await fetch(githubUrl);
+		const githubRes = await fetch(githubUrl, {
+			headers: request.headers,
+			cf: {
+				cacheTtl: 604800,
+				cacheEverything: true,
+			},
+		});
 		let githubImage = 'https://github.githubassets.com/assets/campaign-social-031d6161fa10.png';
 		const html = new HTMLRewriter()
 			.on('meta[property="og:image"]', {
@@ -40,8 +46,10 @@ export default {
 			.transform(githubRes);
 		await html.text();
 		const imageRes = await fetch(getGithubImage(githubImage, cacheUrl.pathname), {
-			headers: {
-				'user-agent': request.headers.get('user-agent'),
+			headers: request.headers,
+			cf: {
+				cacheTtl: 604800,
+				cacheEverything: true,
 			},
 		});
 		if (imageRes.ok) {
